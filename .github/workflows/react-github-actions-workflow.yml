@@ -1,0 +1,46 @@
+on:
+  push:
+    branches:
+      - homolog
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: Instalando dependencias
+        run: npm install    
+      # - name: Test
+      #   run: npm test
+      #   env:
+      #     CI: true
+      - name: Gerando build
+        run: npm run build
+      - name: Compartilhando build dentro do workflow
+        uses: actions/upload-artifact@v1
+        with:
+          name: react-build
+          path: build
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Recuperar build
+        uses: actions/download-artifact@v1
+        with:
+          name: react-build
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+      - name: Deploy to S3
+        run: aws s3 sync . s3://larica-ai --acl public-read
+        working-directory: react-build
