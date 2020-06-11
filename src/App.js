@@ -16,7 +16,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Devair lindo
+          MEu piruuuu ta sniper
         </a>
       </header>
     </div>
