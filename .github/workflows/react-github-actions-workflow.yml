@@ -21,7 +21,7 @@ jobs:
       # - name: Test
       #   run: npm test
       #   env:
-      #     CI: true
+        # CI: false
       - name: Gerando build
         run: npm run build
       - name: Compartilhando build dentro do workflow
