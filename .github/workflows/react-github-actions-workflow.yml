@@ -18,10 +18,6 @@ jobs:
           node-version: 14.x
       - name: Instalando dependencias
         run: npm install    
-      # - name: Test
-      #   run: npm test
-      #   env:
-        # CI: false
       - name: Gerando build
         run: npm run build
       - name: Compartilhando build dentro do workflow
