@@ -94,7 +94,7 @@ function Menu() {
                     aria-label={`star ${tile.categoryName}`}
                     className={classes.icon}
                   >
-                    <AddShoppingCartIcon />
+                    <AddShoppingCartIcon  />
                   </IconButton>
                 }
                 className={classes.titleBar}
