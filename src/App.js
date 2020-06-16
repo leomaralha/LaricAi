@@ -1,12 +1,14 @@
 import React from "react";
 import { Routes } from "./router";
 import { CartContextProvider } from "./contexts/CartContext";
-
+import { ThemeProvider } from "./contexts/ThemeProvider";
 function App() {
   return (
-    <CartContextProvider>
-      <Routes />
-    </CartContextProvider>
+    <ThemeProvider>
+      <CartContextProvider>
+        <Routes />
+      </CartContextProvider>
+    </ThemeProvider>
   );
 }
 
