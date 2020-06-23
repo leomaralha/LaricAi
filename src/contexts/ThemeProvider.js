@@ -9,6 +9,21 @@ const theme = createMuiTheme({
     toolbar: {
       maxWidth: 240,
     },
+    cardTitle: {
+      fontSize: "1.2rem",
+      fontWeight: "bold",
+      marginBottom: "0.35em",
+      overflow: "hidden",
+      lineHeight: "1.30",
+      textOverflow: "ellipsis",
+    },
+    cardDescription: {
+      fontSize: "0.8rem",
+      letterSpacing: "0.00938em",
+      overflow: "hidden",
+      lineHeight: "1.30",
+      textOverflow: "ellipsis",
+    },
   },
 });
 
