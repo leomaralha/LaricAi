@@ -11,15 +11,19 @@ import PropTypes from "prop-types";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import Fade from "@material-ui/core/Fade";
 
+
+import ShoppingCartSharpIcon from '@material-ui/icons/ShoppingCartSharp';
+import Badge from '@material-ui/core/Badge';
+import { Icon } from "@material-ui/core";
+import Grid from '@material-ui/core/Grid';
+
 import clsx from "clsx";
 
-function SearchAppBar({
-  onClickMenu,
-  onSearchFieldChange,
-  searchFieldValue,
-  isDrawerOpen,
-}) {
+function SearchAppBar({ onClickMenu, isDrawerOpen, appBarTitle }) {
+
   const classes = useStyles();
+
+
 
   const menuButton = () =>
     isDrawerOpen ? (
@@ -35,49 +39,40 @@ function SearchAppBar({
         </IconButton>
       </Fade>
     ) : (
-      <Fade in={true} timeout={500}>
-        <IconButton
-          edge="start"
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="open drawer"
-          onClick={onClickMenu}
-        >
-          <MenuIcon />
-        </IconButton>
-      </Fade>
-    );
+        <Fade in={true} timeout={500}>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+            onClick={onClickMenu}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Fade>
+      );
 
   return (
     <div className={classes.root}>
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: isDrawerOpen,
-        })}
-      >
-        <Toolbar>
-          {menuButton()}
-          <Typography className={classes.title} variant="h6" noWrap>
-            Larica Ai!
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Código do pedido"
-              classes={{
-                root: classes.inputRoot,
-                input: clsx(classes.inputInput, {
-                  [classes.inputInputShift]: isDrawerOpen,
-                }),
-              }}
-              onChange={onSearchFieldChange}
-              value={searchFieldValue}
-              inputProps={{ "aria-label": "search" }}
-            />
+      <AppBar position="static" color="secondary" className={clsx(classes.appBar, { [classes.appBarShift]: isDrawerOpen, })}>
+        <Toolbar className={classes.actionBar}>
+          <div className={classes.title}> 
+            {menuButton()}
           </div>
+          <Typography className={classes.title} variant="h5">
+            {appBarTitle}
+          </Typography>
+
+          <div>
+            <IconButton
+              color="inherit"
+            >
+              <Badge badgeContent={0} color="error" showZero>
+                <ShoppingCartSharpIcon> </ShoppingCartSharpIcon>
+              </Badge>
+            </IconButton>
+          </div>
+
         </Toolbar>
       </AppBar>
     </div>

@@ -4,7 +4,6 @@ export default makeStyles((theme) => {
   return {
     root: {
       flexGrow: 1,
-      marginBottom: "52px",
     },
     appBar: {
       transition: theme.transitions.create(["margin", "width"], {
@@ -24,11 +23,7 @@ export default makeStyles((theme) => {
       marginRight: theme.spacing(2),
     },
     title: {
-      flexGrow: 1,
-      display: "none",
-      [theme.breakpoints.up("sm")]: {
-        display: "block",
-      },
+      flexGrow: 1,  
     },
     search: {
       position: "relative",
@@ -67,5 +62,11 @@ export default makeStyles((theme) => {
       transition: theme.transitions.create("width"),
       width: 0,
     },
+    actionBar:{
+      display:"flex",
+      flexGrow:1,
+      //justifyContent:"space-between",
+      maxWidth:"100%",
+    }
   };
 });

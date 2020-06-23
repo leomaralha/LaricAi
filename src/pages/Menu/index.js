@@ -13,24 +13,39 @@ import { Typography } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
+    flexFlow:"column wrap",
+    justifyContent: "space-around",
     overflow: "hidden",
     backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    width: "100vw",
-    height: "70vh",
+    display:"flex",
+    flexFlow:"column wrap",
+
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-    transform: "translateZ(0)",
+    transform: "translateZ()",//Defines a 3D translation, using only the value for the Z-axis
   },
   titleBar: {
-    background:
-      "linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, " +
-      "rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
+    display: "flex",
+    flexFlow:"column wrap",
+     background:
+      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, ' +
+      'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    
+    height: "auto",
   },
-  icon: {
-    color: "white",
+  styleCat: {
+    marginTop:"10px",
+    textAlign: "center",
+    fontSize: "2rem",
+    fontFamily:"Arial Narrowl",
+    //color: "rgba(255,255,255,255)",
+    //fontWeight: "normal",
+  },
+  styleDesc:{
+    textAlign: "center",
+    fontSize: "1rem",
+    
   },
 }));
 
@@ -39,33 +54,33 @@ const tileData = [
     img:
       "https://media-cdn.tripadvisor.com/media/photo-o/18/1a/d5/1e/casteloes.jpg",
     categoryName: "Pizzas",
-    description: "Pizzass de varios sabores preparadas com muito carinho",
+    description: "Leo caralha do queru",
   },
   {
     img:
       "https://media-cdn.tripadvisor.com/media/photo-o/18/1a/d5/1e/casteloes.jpg",
     categoryName: "Pizzas",
-    description: "Pizzass de varios sabores preparadas com muito carinho",
+    description: "Pizzass",
   },
   {
     img:
       "https://media-cdn.tripadvisor.com/media/photo-o/18/1a/d5/1e/casteloes.jpg",
     categoryName: "Pizzas",
-    description: "Pizzass de varios sabores preparadas com muito carinho",
+    description: "Pizzass",
   },
   {
     img:
       "https://media-cdn.tripadvisor.com/media/photo-o/18/1a/d5/1e/casteloes.jpg",
     categoryName: "Pizzas",
-    description: "Pizzass de varios sabores preparadas com muito carinho",
+    description: "Pizzass",
   },
   {
     img:
       "https://media-cdn.tripadvisor.com/media/photo-o/18/1a/d5/1e/casteloes.jpg",
     categoryName: "Pizzas",
-    description: "Pizzass de varios sabores preparadas com muito carinho",
+    description: "Pizzass",
   },
-];
+];//Se tiver menosd e 3 meio q nao fica responsivo
 
 function Menu() {
   const [searchText, setSearchText] = React.useState("");
@@ -75,30 +90,23 @@ function Menu() {
       <SideMenu
         onSearchFieldChange={setSearchText}
         searchFieldValue={searchText}
+        className={classes.test}        
       />
+      
       <div className={classes.root}>
-        <Typography>
-          Nosso menu
-        </Typography>
-        <GridList cellHeight={150} spacing={5} className={classes.gridList}>
+
+        <GridList cellHeight={150} spacing={0} className={classes.gridList}>
           {tileData.map((tile, index) => (
             <GridListTile key={index} cols={2} rows={1}>
               <img src={tile.img} alt={tile.categoryName} />
               <GridListTileBar
-                title={tile.categoryName}
-                titlePosition="bottom"
-                subtitle={tile.description}
-                actionPosition="right"
-                actionIcon={
-                  <IconButton
-                    aria-label={`star ${tile.categoryName}`}
-                    className={classes.icon}
-                  >
-                    <AddShoppingCartIcon  />
-                  </IconButton>
-                }
                 className={classes.titleBar}
+                title={<p className={classes.styleCat}> {tile.categoryName}</p>}
+                titlePosition="bottom"
+                subtitle={<p className={classes.styleDesc}> {tile.description}</p>}
+                //actionPosition="r"           
               />
+
             </GridListTile>
           ))}
         </GridList>
