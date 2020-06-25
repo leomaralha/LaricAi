@@ -3,10 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
-import IconButton from "@material-ui/core/IconButton";
-import StarBorderIcon from "@material-ui/icons/StarBorder";
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import style from "./style";
 import SideMenu from "../../components/SideMenu";
 import { Typography } from "@material-ui/core";
 
@@ -39,8 +35,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     fontSize: "2rem",
     fontFamily:"Arial Narrowl",
-    //color: "rgba(255,255,255,255)",
-    //fontWeight: "normal",
   },
   styleDesc:{
     textAlign: "center",
@@ -80,7 +74,7 @@ const tileData = [
     categoryName: "Pizzas",
     description: "Pizzass",
   },
-];//Se tiver menosd e 3 meio q nao fica responsivo
+];
 
 function Menu() {
   const [searchText, setSearchText] = React.useState("");
@@ -94,7 +88,6 @@ function Menu() {
       />
       
       <div className={classes.root}>
-
         <GridList cellHeight={150} spacing={0} className={classes.gridList}>
           {tileData.map((tile, index) => (
             <GridListTile key={index} cols={2} rows={1}>
@@ -103,10 +96,8 @@ function Menu() {
                 className={classes.titleBar}
                 title={<p className={classes.styleCat}> {tile.categoryName}</p>}
                 titlePosition="bottom"
-                subtitle={<p className={classes.styleDesc}> {tile.description}</p>}
-                //actionPosition="r"           
+                subtitle={<p className={classes.styleDesc}> {tile.description}</p>}         
               />
-
             </GridListTile>
           ))}
         </GridList>

@@ -1,34 +1,102 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid } from "@material-ui/core";
 import style from "./style";
-
+import SideMenu from "../../components/SideMenu";
 import ItemMenu from "../../components/cards/ItemMenu";
-import CartItem from "../../components/cards/CartItem.js";
+
+const pic =
+  "https://portal.minervafoods.com/files/hamburguer_de_frango_-_blog.jpg";
+
+const dados = [
+  {
+    pic:
+      "https://portal.minervafoods.com/files/hamburguer_de_frango_-_blog.jpg",
+    name: "HAMBURGER",
+    description: "(pão, bife caseiro, alface, tomate, batatinha, milho verde)",
+    monetaryValue: "R$ 6,00",
+  },
+  {
+    pic:
+      "https://portal.minervafoods.com/files/hamburguer_de_frango_-_blog.jpg",
+    name: "CHEESE BURGER",
+    description:
+      "(pão, bife caseiro, alface, queijo, tomate, batatinha, milho verde)",
+    monetaryValue: "R$ 7,00",
+  },
+  {
+    pic:
+      "https://portal.minervafoods.com/files/hamburguer_de_frango_-_blog.jpg",
+    name: "EGG BURGER",
+    description:
+      "(pão, bife caseiro, ovo, alface, tomate, batatinha, milho verde)",
+    monetaryValue: "R$ 7,00",
+  },
+  {
+    pic:
+      "https://portal.minervafoods.com/files/hamburguer_de_frango_-_blog.jpg",
+    name: "X-TUDO",
+    description:
+      "(pão, bife caseiro, ovo, queijo, bacon, presunto, alface, tomate, batatinha, milho verde)",
+    monetaryValue: "R$ 11,00",
+  },
+  {
+    pic:
+      "https://portal.minervafoods.com/files/hamburguer_de_frango_-_blog.jpg",
+    name: "X-CALANGO",
+    description:
+      "(pão, 2x bife caseiro, ovo, queijo, bacon, presunto, alface, tomate, batatinha, milho verde)",
+    monetaryValue: "R$ 13,00",
+  },
+  {
+    pic:
+      "https://portal.minervafoods.com/files/hamburguer_de_frango_-_blog.jpg",
+    name: "X-CALANGO",
+    description:
+      "(pão, 2x bife caseiro, ovo, queijo, bacon, presunto, alface, tomate, batatinha, milho verde)",
+    monetaryValue: "R$ 13,00",
+  },
+  {
+    pic:
+      "https://portal.minervafoods.com/files/hamburguer_de_frango_-_blog.jpg",
+    name: "X-CALANGO",
+    description:
+      "(pão, 2x bife caseiro, ovo, queijo, bacon, presunto, alface, tomate, batatinha, milho verde)",
+    monetaryValue: "R$ 13,00",
+  },
+  {
+    pic:
+      "https://portal.minervafoods.com/files/hamburguer_de_frango_-_blog.jpg",
+    name: "X-CALANGO",
+    description:
+      "(pão, 2x bife caseiro, ovo, queijo, bacon, presunto, alface, tomate, batatinha, milho verde)",
+    monetaryValue: "R$ 13,00",
+  },
+];
 
 const useStyles = makeStyles(style);
 function Cart() {
+  const [searchText, setSearchText] = React.useState("");
   const classes = useStyles();
+
+  function mapDataToCard(cardData, index) {
+    return (
+      <ItemMenu
+        imgUrl={cardData.pic}
+        name={cardData.name}
+        description={cardData.description}
+        monetaryValue={cardData.monetaryValue}
+        key={index}
+      />
+    );
+  }
   return (
     <>
-      <ItemMenu
-        name="Coca-Cola"
-        description="Somente o texto necessario para definir o produto então pra"
-        monetaryValue="R$ 9.99"
-        onAddToCart={() => {
-          alert("comprou");
-        }}
+      <SideMenu
+        onSearchFieldChange={setSearchText}
+        searchFieldValue={searchText}
       />
-      <CartItem
-        name="CocaColaaaaaaaaaaaaaaa"
-        description="Somente o texto necessario para definir o produto então pra"
-        monetaryValue="R$ 9.99"
-        onAddToCart={() => {
-          alert("comprou");
-        }}
-      />
+      {dados.map(mapDataToCard)}
     </>
   );
 }
-
 export default Cart;
