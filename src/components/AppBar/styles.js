@@ -3,8 +3,10 @@ import { fade, makeStyles } from "@material-ui/core/styles";
 export default makeStyles((theme) => {
   return {
     root: {
-      flexGrow: 1,
-      marginBottom: "52px",
+      //flexGrow: 1,
+    },
+    appBarRoot:{
+      background:theme.palette.tertiary.dark,
     },
     appBar: {
       transition: theme.transitions.create(["margin", "width"], {
@@ -24,11 +26,7 @@ export default makeStyles((theme) => {
       marginRight: theme.spacing(2),
     },
     title: {
-      flexGrow: 1,
-      display: "none",
-      [theme.breakpoints.up("sm")]: {
-        display: "block",
-      },
+      flexGrow: 1,  
     },
     search: {
       position: "relative",
@@ -55,7 +53,6 @@ export default makeStyles((theme) => {
     },
     inputInput: {
       padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
       transition: theme.transitions.create("width"),
       width: "20ch",
@@ -66,6 +63,11 @@ export default makeStyles((theme) => {
     inputInputShift:{
       transition: theme.transitions.create("width"),
       width: 0,
+    },
+    actionBar:{
+      display:"flex",
+      flexGrow:1,
+      maxWidth:"100%",
     },
   };
 });

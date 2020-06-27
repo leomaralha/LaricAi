@@ -16,6 +16,7 @@ const theme = createMuiTheme({
       overflow: "hidden",
       lineHeight: "1.30",
       textOverflow: "ellipsis",
+      fontFamily:"Segoe UI",
     },
     cardDescription: {
       fontSize: "0.8rem",
@@ -23,7 +24,20 @@ const theme = createMuiTheme({
       overflow: "hidden",
       lineHeight: "1.30",
       textOverflow: "ellipsis",
+      fontFamily:"-apple-system",
     },
+  },
+  palette: {
+    secondary:{
+        main:"#920005",
+        dark: "#8b0000",
+        light:"#b60006",
+    },
+    tertiary:{
+      main:"#daff8f",
+      dark: "#8b0000",
+      light:"#b60006",
+  },
   },
 });
 
