@@ -1,6 +1,7 @@
 import React from "react";
-import { Grid, Typography, IconButton, Paper } from "@material-ui/core";
+import { Grid, Typography, Paper } from "@material-ui/core";
 import style from "./style";
+
 const pic =
   "https://static.carrefour.com.br/medias/sys_master/images/images/h10/h46/h00/h00/12175673655326.jpg";
 
@@ -9,7 +10,7 @@ function ItemMenu({ imgUrl, name, description, monetaryValue, onAddToCart }) {
   const classes = style();
   return (
     <div className={classes.root}>
-      <Paper className={classes.paper} elevation={2}>
+      <Paper className={classes.paper} elevation={2} onClick={()=>window.alert("ALOU")}>
         <Grid className={classes.imageContainer} container wrap="nowrap" spacing={2}>
           <Grid item xs>
             <Typography className={classes.productName}>{name}</Typography>

@@ -1,20 +1,6 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { Grid, TextField, Button, Typography } from "@material-ui/core";
-import style from "./style";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-  },
-
-  campodetextoLogin: {
-    border: "solid 1px red",
-  },
-}));
+import useStyles from "./style";
 
 function Login() {
   const classes = useStyles();
