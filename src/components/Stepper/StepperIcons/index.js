@@ -35,6 +35,7 @@ function StepIcon(props) {
       className={clsx(classes.root, {
         [classes.active]: active,
         [classes.completed]: completed,
+        [classes.finished]: completed && icon == 4
       })}
     >
       {getIcon()}

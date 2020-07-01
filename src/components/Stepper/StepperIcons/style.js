@@ -15,7 +15,7 @@ export default makeStyles((theme) => ({
   },
 
   active: {
-    color: theme.palette.warning.main,
+    color: theme.palette.secondary.main,
     animationName: "$loading",
     animationDuration: "1s",
     animationTimingFunction: "ease-out",
@@ -23,4 +23,9 @@ export default makeStyles((theme) => ({
     animationIterationCount: "infinite",
     animationDirection: "alternate",
   },
+
+  finished:{
+    transform: 'scale(1.8)',
+    color: theme.palette.success.dark,
+  }
 }));

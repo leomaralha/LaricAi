@@ -15,7 +15,7 @@ import Box from "@material-ui/core/Box";
 import clsx from "clsx";
 
 function DeliveryProgressPage() {
-  const [activeStep, setActiveStep] = React.useState(1);
+  const [activeStep, setActiveStep] = React.useState(3);
   const classes = useStyles();
   const steps = ["Aprovação", "Preparo", "Entrega", "Finalizado"];
 
@@ -66,6 +66,16 @@ function DeliveryProgressPage() {
     );
   }
 
+  const buttonFinalize = (
+    <Grid container justify="center" alignItems="center">
+      <Grid item xs={12}>
+        <Button fullWidth color="secondary" variant="outlined" onClick={handleNext}>
+          Foi entregue
+        </Button>
+      </Grid>
+    </Grid>
+  );
+
   return (
     <>
       <SideMenu onSearchFieldChange searchFieldValue />
@@ -82,8 +92,8 @@ function DeliveryProgressPage() {
                 Pedido Enviado
               </Typography>
               <Typography className={classes.textBody}>
-                Seu pedido foi computado, agora você só precisa acompanhar o
-                andamento da aceitação e entrega.
+                Seu pedido foi enviado, agora você só precisa acompanhar o
+                andamento.
               </Typography>
             </Grid>
           </Grid>
@@ -120,6 +130,7 @@ function DeliveryProgressPage() {
                 <Typography className={classes.textBody}>
                   {getStatusDescription(activeStep)}
                 </Typography>
+                {activeStep == 3 && buttonFinalize}
               </Box>
             </Grid>
           </Grid>

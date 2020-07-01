@@ -1,109 +1,135 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
+import PropTypes from "prop-types";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 import SideMenu from "../../components/SideMenu";
-import { Typography } from "@material-ui/core";
+import TabFilter from '../../components/TabBody'
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexFlow:"column wrap",
-    justifyContent: "space-around",
-    overflow: "hidden",
-    backgroundColor: theme.palette.background.paper,
-  },
-  gridList: {
-    display:"flex",
-    flexFlow:"column wrap",
-
-    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-    transform: "translateZ()",//Defines a 3D translation, using only the value for the Z-axis
-  },
-  titleBar: {
-    display: "flex",
-    flexFlow:"column wrap",
-     background:
-      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, ' +
-      'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-    
-    height: "auto",
-  },
-  styleCat: {
-    marginTop:"10px",
-    textAlign: "center",
-    fontSize: "2rem",
-    fontFamily:"Arial Narrowl",
-  },
-  styleDesc:{
-    textAlign: "center",
-    fontSize: "1rem",
-    
-  },
-}));
-
-const tileData = [
-  {
-    img:
-      "https://media-cdn.tripadvisor.com/media/photo-o/18/1a/d5/1e/casteloes.jpg",
-    categoryName: "Pizzas",
-    description: "Leo caralha do queru",
-  },
-  {
-    img:
-      "https://media-cdn.tripadvisor.com/media/photo-o/18/1a/d5/1e/casteloes.jpg",
-    categoryName: "Pizzas",
-    description: "Pizzass",
-  },
-  {
-    img:
-      "https://media-cdn.tripadvisor.com/media/photo-o/18/1a/d5/1e/casteloes.jpg",
-    categoryName: "Pizzas",
-    description: "Pizzass",
-  },
-  {
-    img:
-      "https://media-cdn.tripadvisor.com/media/photo-o/18/1a/d5/1e/casteloes.jpg",
-    categoryName: "Pizzas",
-    description: "Pizzass",
-  },
-  {
-    img:
-      "https://media-cdn.tripadvisor.com/media/photo-o/18/1a/d5/1e/casteloes.jpg",
-    categoryName: "Pizzas",
-    description: "Pizzass",
-  },
-];
-
-function Menu() {
-  const [searchText, setSearchText] = React.useState("");
-  const classes = useStyles();
   return (
-    <>
-      <SideMenu
-        onSearchFieldChange={setSearchText}
-        searchFieldValue={searchText}
-        className={classes.test}        
-      />
-      
-      <div className={classes.root}>
-        <GridList cellHeight={150} spacing={0} className={classes.gridList}>
-          {tileData.map((tile, index) => (
-            <GridListTile key={index} cols={2} rows={1}>
-              <img src={tile.img} alt={tile.categoryName} />
-              <GridListTileBar
-                className={classes.titleBar}
-                title={<p className={classes.styleCat}> {tile.categoryName}</p>}
-                titlePosition="bottom"
-                subtitle={<p className={classes.styleDesc}> {tile.description}</p>}         
-              />
-            </GridListTile>
-          ))}
-        </GridList>
-      </div>
-    </>
+    <Box
+      role="tabpanel"
+      hidden={value !== index}
+      id={`scrollable-auto-tabpanel-${index}`}
+      aria-labelledby={`scrollable-auto-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </Box>
   );
 }
 
-export default Menu;
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `scrollable-auto-tab-${index}`,
+    "aria-controls": `scrollable-auto-tabpanel-${index}`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    width: "100%",
+    backgroundColor: theme.palette.background.paper,
+  },
+
+  tabsRoot: {
+    width: "100%",
+    boxShadow: "inset 0 -1px 0 0 #E6ECF0",
+  },
+  indicator: {
+    backgroundColor: theme.palette.secondary.light,
+  },
+}));
+
+const StyledTab = withStyles((theme) => ({
+  root: {
+    minHeight: 53,
+    minWidth: 80,
+    "&:hover": {
+      backgroundColor: "rgba(29, 161, 242, 0.1)",
+      "& $wrapper": {
+        color: theme.palette.secondary.light,
+      },
+    },
+    "&$selected": {
+      "& *": {
+        color: theme.palette.secondary.light,
+      },
+    },
+  },
+  selected: {},
+  textColorInherit: {
+    opacity: 1,
+  },
+  wrapper: {
+    textTransform: "none",
+    fontSize: 15,
+    fontWeight: 700,
+    color: "#657786",
+  },
+}))(Tab);
+
+export default function ScrollableTabsButtonAuto() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <div className={classes.root}>
+      <SideMenu onSearchFieldChange searchFieldValue />
+      <AppBar position="static" color="default">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="scrollable"
+          scrollButtons="auto"
+          aria-label="scrollable auto tabs"
+          classes={{
+            root: classes.tabsRoot,
+            indicator: classes.indicator,
+          }}
+        >
+          <StyledTab label="Hambuguers" {...a11yProps(0)} />
+          <StyledTab label="Pizzas" {...a11yProps(1)} />
+          <StyledTab label="Bebidas" {...a11yProps(2)} />
+          <StyledTab label={"Açai & Sorvete"} {...a11yProps(3)} />
+        </Tabs>
+      </AppBar>
+
+      <TabPanel value={value} index={0}>
+        <TabFilter filter="teste"/>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        Item Two
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Item Three
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        Item Four
+      </TabPanel>
+      
+    </div>
+  );
+}

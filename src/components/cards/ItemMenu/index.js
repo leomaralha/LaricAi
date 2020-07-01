@@ -6,11 +6,17 @@ const pic =
   "https://static.carrefour.com.br/medias/sys_master/images/images/h10/h46/h00/h00/12175673655326.jpg";
 
 
-function ItemMenu({ imgUrl, name, description, monetaryValue, onAddToCart }) {
+function ItemMenu({ imgUrl, name, description, monetaryValue, onClick, index }) {
   const classes = style();
+
+  const handleClick = () => {
+    debugger;
+    onClick(index)
+  }
+
   return (
-    <div className={classes.root}>
-      <Paper className={classes.paper} elevation={2}>
+
+      <Paper onClick={handleClick} className={classes.paper} elevation={2}>
         <Grid className={classes.imageContainer} container wrap="nowrap" spacing={2}>
           <Grid item xs>
             <Typography className={classes.productName}>{name}</Typography>
@@ -27,7 +33,6 @@ function ItemMenu({ imgUrl, name, description, monetaryValue, onAddToCart }) {
           </Grid>
         </Grid>
       </Paper>
-    </div>
   );
 }
 

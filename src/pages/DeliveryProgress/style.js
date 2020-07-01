@@ -17,7 +17,7 @@ export default makeStyles((theme) => ({
     fontSize: 12,
     marginBottom: "0.875em",
     display: "inline-block",
-    color: theme.palette.warning.light
+    color: theme.palette.secondary.light
   },
 
   textCompleted:{
@@ -47,7 +47,7 @@ export default makeStyles((theme) => ({
 
   textBody: {
     marginBottom: theme.spacing(2),
-    marginLeft: theme.spacing(2),
+    textAlign: 'justify',
     fontSize: "0.95rem",
     letterSpacing: "0.00938em",
     fontFamily: family,

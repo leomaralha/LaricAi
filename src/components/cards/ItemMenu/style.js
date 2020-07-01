@@ -1,9 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 export default makeStyles((theme) => ({
 
-  root: {
-  position:"relative",
-  },
   paper: {
     position: "relative",
     margin: theme.spacing(1),
@@ -12,7 +9,9 @@ export default makeStyles((theme) => ({
     overflow: "hidden",
     maxHeight: "100%",
     borderRadius:"10px",
+    width: '100%'
   },
+  
   image: {
     maxHeight: "100%",
     maxWidth: "100%",
