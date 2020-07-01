@@ -1,6 +1,25 @@
 import { makeStyles } from "@material-ui/core";
 export default makeStyles((theme) => ({
 
+  root: {
+  position:"relative",
+  animationName: '$test',
+  animationDuration: '1s',
+  animationTimingFunction: 'ease-out',
+  animationFillMode: 'forwards'
+
+  },
+  "@keyframes test": {
+    from:{
+      opacity:"0",
+      transform:"rotate(1deg)",
+
+    },
+    to:{
+      opacity:"1",
+      transform:"rotate(0deg)",     
+    }
+  },
   paper: {
     position: "relative",
     margin: theme.spacing(1),

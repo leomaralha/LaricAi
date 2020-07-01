@@ -15,7 +15,7 @@ const pic =
 function CartCardItem({ imgUrl }) {
   const classes = useStyles();
   return (
-    <Paper className={classes.root} elevation={2}>
+    <Paper className={classes.root} elevation={2} onClick={()=>window.alert("ALOU")}>
       <Grid container>
         <Grid item>
           {/* imagem */}

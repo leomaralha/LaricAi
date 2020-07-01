@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography, IconButton, Paper } from "@material-ui/core";
+import { Grid, Typography, Paper } from "@material-ui/core";
 import style from "./style";
 
 const pic =
