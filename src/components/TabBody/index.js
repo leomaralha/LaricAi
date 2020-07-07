@@ -1,13 +1,14 @@
 import React from "react";
-import { Grid, Dialog } from "@material-ui/core";
+import { Grid, Dialog, Typography } from "@material-ui/core";
 import useStyles from "./style";
 import ItemMenu from "../../components/cards/ItemMenu";
 import { fakeFetch } from "../../utils/fakeFetch";
 import { Backdrop } from "@material-ui/core";
 import Slide from "@material-ui/core/Slide";
 import DialogHeader from "../../components/cards/DialogHeader";
-import ProductDetailsForm from "../../components/forms/ProductDetailsForm";
+import ProductDetailsForm from "../../components/Forms/ProductDetailsForm";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import FooterAddCart from "../../components/Footers/FooterAddCart";
 
 const FILTERED_MOCK = [
   {
@@ -19,7 +20,7 @@ const FILTERED_MOCK = [
     increments: [
       {
         name: "Bacon",
-        id: 1,
+        id: 0,
         value: "4.00",
       },
       {
@@ -29,114 +30,115 @@ const FILTERED_MOCK = [
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 2,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 3,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 4,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 5,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 6,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 7,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 8,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 9,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 10,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 11,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 12,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 13,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 14,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 15,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 16,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 17,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 18,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 19,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 20,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 21,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 22,
         value: "4.00",
       },
     ],
     ingredients: [
       {
         name: "Bacon",
-        id: 1,
+        id: 0,
+        value:"2,00"
       },
       {
         name: "Bacon",
@@ -145,87 +147,72 @@ const FILTERED_MOCK = [
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 2,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 3,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 4,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 5,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 6,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 7,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 8,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 9,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 10,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 11,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 12,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 13,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
+        id: 14,
         value: "4.00",
       },
       {
         name: "Bacon",
-        id: 1,
-        value: "4.00",
-      },
-      {
-        name: "Bacon",
-        id: 1,
-        value: "4.00",
-      },
-      {
-        name: "Bacon",
-        id: 1,
-        value: "4.00",
-      },
-      {
-        name: "Bacon",
-        id: 1,
+        id: 15,
         value: "4.00",
       },
     ],
@@ -389,7 +376,11 @@ function TabBodyFilter({ filter }) {
   const [dialogState, setDialogState] = React.useState(false);
   const [products, setProducts] = React.useState([]);
   const [selectedProduct, setSelectedProduct] = React.useState(null);
+  const [amount, setAmount] = React.useState(0);
 
+  const handleChange = (qtd) => {
+    setAmount(qtd);   
+  };
   const handleClickCard = (index) => {
     const selected = products[index];
     setDialogState(true);
@@ -412,22 +403,19 @@ function TabBodyFilter({ filter }) {
     const { increments, ingredients } = product;
     return { Incrementos: increments, Ingredientes: ingredients };
   };
-
   return (
     <>
       <Grid container direction="column" justify="center" alignItems="center">
         {products.map((cardData, index) => (
-          <Grid item xs={12}>
-            <ItemMenu
-              imgUrl={cardData.pic}
-              name={cardData.name}
-              description={cardData.description}
-              monetaryValue={cardData.monetaryValue}
-              key={index}
-              index={index}
-              onClick={handleClickCard}
-            />
-          </Grid>
+          <ItemMenu
+            imgUrl={cardData.pic}
+            name={cardData.name}
+            description={cardData.description}
+            monetaryValue={cardData.monetaryValue}
+            key={index}
+            index={index}
+            onClick={handleClickCard}
+          />
         ))}
       </Grid>
 
@@ -446,9 +434,13 @@ function TabBodyFilter({ filter }) {
             name={selectedProduct.name}
             value={selectedProduct.value}
             imgSrc={selectedProduct.pic}
-            onChange={console.log}
+            onChange={handleChange}
             categories={getroductCategories(selectedProduct)}
             description={selectedProduct.description}
+          />
+
+          <FooterAddCart
+          value = {amount} 
           />
         </Dialog>
       )}

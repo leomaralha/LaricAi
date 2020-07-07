@@ -10,15 +10,13 @@ function ItemMenu({ imgUrl, name, description, monetaryValue, onClick, index }) 
   const classes = style();
 
   const handleClick = () => {
-    debugger;
     onClick(index)
   }
 
   return (
-
       <Paper onClick={handleClick} className={classes.paper} elevation={2}>
         <Grid className={classes.imageContainer} container wrap="nowrap" spacing={2}>
-          <Grid item xs>
+          <Grid item xs={8}>
             <Typography className={classes.productName}>{name}</Typography>
             <Typography className={classes.description}>{description}</Typography>
             <Typography className={classes.monetaryValue}>{monetaryValue}</Typography>

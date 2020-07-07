@@ -4,7 +4,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
-import useStyles from "./styles";
+import useStyles from "./style";
 import PropTypes from "prop-types";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import Fade from "@material-ui/core/Fade";
