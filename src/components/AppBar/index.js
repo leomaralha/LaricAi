@@ -18,19 +18,16 @@ function SearchAppBar({ onClickMenu, isDrawerOpen, appBarTitle }) {
 
   const menuButton = () =>
     isDrawerOpen ? (
-      <Fade in={true} timeout={500}>
-        <IconButton
-          edge="start"
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="open drawer"
-          onClick={onClickMenu}
-        >
-          <ArrowBackIosIcon />
-        </IconButton>
-      </Fade>
+      <IconButton
+        edge="start"
+        className={classes.menuButton}
+        color="inherit"
+        aria-label="open drawer"
+        onClick={onClickMenu}
+      >
+        <ArrowBackIosIcon />
+      </IconButton>
     ) : (
-      <Fade in={true} timeout={500}>
         <IconButton
           edge="start"
           className={classes.menuButton}
@@ -40,8 +37,7 @@ function SearchAppBar({ onClickMenu, isDrawerOpen, appBarTitle }) {
         >
           <MenuIcon />
         </IconButton>
-      </Fade>
-    );
+      );
 
   return (
     <>

@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles from './style';
-import Snackbar from "@material-ui/core/Snackbar";
+import MuiSnackbar from "@material-ui/core/Snackbar";
 import { Alert as MuiAlert, AlertTitle } from '@material-ui/lab';
 import Slide from '@material-ui/core/Slide';
 import { withStyles } from '@material-ui/core'
@@ -28,8 +28,14 @@ const StyledAlert = withStyles((theme) => ({
     },
 }))(MuiAlert)
 
+const Snackbar = withStyles((theme) => ({
+    root: {
+        position: 'relative'
+    }
+}))(MuiSnackbar)
 
-function Alert({ open, message, onClose, autoHideDuration=4000, anchorOrigin, key, type, title, variant, ...others }) {
+
+function Alert({ open, message, onClose, autoHideDuration = 4000, anchorOrigin, key, type, title, variant, ...others }) {
     const classes = useStyles();
 
     return (
@@ -39,7 +45,6 @@ function Alert({ open, message, onClose, autoHideDuration=4000, anchorOrigin, ke
             onClose={onClose}
             autoHideDuration={autoHideDuration}
             {...others.Snackbar}
-            classes={{ root: classes.snackRoot }}
         >
             <StyledAlert
                 onClose={onClose} severity={type} variant={variant} {...others.Alert}>
