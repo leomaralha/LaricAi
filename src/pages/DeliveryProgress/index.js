@@ -69,7 +69,12 @@ function DeliveryProgressPage() {
   const buttonFinalize = (
     <Grid container justify="center" alignItems="center">
       <Grid item xs={12}>
-        <Button fullWidth color="secondary" variant="outlined" onClick={handleNext}>
+        <Button
+          fullWidth
+          color="secondary"
+          variant="outlined"
+          onClick={handleNext}
+        >
           Foi entregue
         </Button>
       </Grid>
@@ -78,68 +83,70 @@ function DeliveryProgressPage() {
 
   return (
     <>
-      <SideMenu onSearchFieldChange searchFieldValue />
-      <div className={classes.rootContainer}>
-        <Grid container>
-          <Grid item xs={12}>
-            <Grid
-              container
-              direction="column"
-              justify="center"
-              alignItems="flex-start"
-            >
-              <Typography className={classes.heading}>
-                Pedido Enviado
-              </Typography>
-              <Typography className={classes.textBody}>
-                Seu pedido foi enviado, agora você só precisa acompanhar o
-                andamento.
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid item xs={12}>
-            <div className={classes.root}>
-              <Stepper
-                alternativeLabel
-                activeStep={activeStep}
-                connector={<StepperConnector />}
+      <div className={classes.root}>
+        <SideMenu onSearchFieldChange searchFieldValue />
+        <div className={classes.rootContainer}>
+          <Grid container>
+            <Grid item xs={12}>
+              <Grid
+                container
+                direction="column"
+                justify="center"
+                alignItems="flex-start"
               >
-                {steps.map((label, index) => (
-                  <Step key={label}>
-                    <StepLabel StepIconComponent={StepperIcons}>
-                      {label}
-                    </StepLabel>
-                  </Step>
-                ))}
-              </Stepper>
-            </div>
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container justify="center" alignItems="flex-start">
-              <Box
-                mt="40px"
-                width="100%"
-                padding="8px"
-                bgcolor="#f6f6f6"
-                p="12px"
-              >
-                {getStatus(activeStep)}
                 <Typography className={classes.heading}>
-                  {steps[activeStep]}
+                  Pedido Enviado
                 </Typography>
                 <Typography className={classes.textBody}>
-                  {getStatusDescription(activeStep)}
+                  Seu pedido foi enviado, agora você só precisa acompanhar o
+                  andamento.
                 </Typography>
-                {activeStep == 3 && buttonFinalize}
-              </Box>
+              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <div className={classes.root}>
+                <Stepper
+                  alternativeLabel
+                  activeStep={activeStep}
+                  connector={<StepperConnector />}
+                >
+                  {steps.map((label, index) => (
+                    <Step key={label}>
+                      <StepLabel StepIconComponent={StepperIcons}>
+                        {label}
+                      </StepLabel>
+                    </Step>
+                  ))}
+                </Stepper>
+              </div>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid container justify="center" alignItems="flex-start">
+                <Box
+                  mt="40px"
+                  width="100%"
+                  padding="8px"
+                  bgcolor="#f6f6f6"
+                  p="12px"
+                >
+                  {getStatus(activeStep)}
+                  <Typography className={classes.heading}>
+                    {steps[activeStep]}
+                  </Typography>
+                  <Typography className={classes.textBody}>
+                    {getStatusDescription(activeStep)}
+                  </Typography>
+                  {activeStep == 3 && buttonFinalize}
+                </Box>
+              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid container></Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <Grid container></Grid>
-          </Grid>
-        </Grid>
-        <Button onClick={handleBack}>Back</Button>
-        <Button onClick={handleNext}>Next</Button>
+          <Button onClick={handleBack}>Back</Button>
+          <Button onClick={handleNext}>Next</Button>
+        </div>
       </div>
     </>
   );

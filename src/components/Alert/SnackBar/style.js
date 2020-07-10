@@ -8,6 +8,7 @@ export default makeStyles((theme) => ({
         left: 0,
         padding: theme.spacing(2),
         height: 'auto',
+        zIndex: theme.zIndex.snackbar,
     },
     snackRoot: {
         position: 'relative',

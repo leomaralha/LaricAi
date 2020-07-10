@@ -9,6 +9,7 @@ let somatorio = 0
 function Test() {
     const classes = useStyles();
     const popNotify = React.useContext(NotificationContext)
+
     const handleClick = async () => {
         const resp = await popNotify({
             okText: "Claro!",
@@ -19,6 +20,7 @@ function Test() {
             message: 'teste' + somatorio,
         })
         somatorio++
+        console.log(resp);
         return resp
     }
 

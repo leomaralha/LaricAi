@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import SideMenu from "../../components/SideMenu";
 import TabFilter from "../../components/TabBody";
+import TabBodyAcai from "../../components/TabBodyAcai";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -121,12 +122,13 @@ export default function ScrollableTabsButtonAuto() {
         <TabFilter filter="teste" />
       </TabPanel>
       <TabPanel value={value} index={1}>
+        <TabFilter filter="tese" />
       </TabPanel>
       <TabPanel value={value} index={2}>
         Item Three
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Four
+        <TabBodyAcai/>
       </TabPanel>
     </div>
   );

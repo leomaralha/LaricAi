@@ -15,7 +15,7 @@ const FILTERED_MOCK = [
     pic:
       "https://portal.minervafoods.com/files/hamburguer_de_frango_-_blog.jpg",
     name: "HAMBURGER",
-    description: "(pão, bife caseiro, alface, tomate, batatinha, milho verde)",
+    description: "(pão, bife caseiro, alface, tomate, batatinha, milho verde pão, bife caseiro, alface, tomate, batatinha, milho verde)",
     value: "R$ 6,00",
     increments: [
       {
