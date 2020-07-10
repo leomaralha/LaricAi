@@ -8,9 +8,17 @@ import IncremetsCard from "../../cards/IncrementCard";
 const DEFAULT_IMAGE =
   "https://static.carrefour.com.br/medias/sys_master/images/images/h10/h46/h00/h00/12175673655326.jpg";
 
-function ProductFormDetails({ name, value, imgSrc, categories, description }) {
+function ProductFormDetails({
+  name,
+  value,
+  imgSrc,
+  categories,
+  description,
+  onChange,
+}) {
   const classes = useStyles();
   const [amount, setAmount] = React.useState({});
+  const [total, setTotal] = React.useState(0);
 
   const onAdd = (category, id) => {
     return () => {
@@ -20,7 +28,6 @@ function ProductFormDetails({ name, value, imgSrc, categories, description }) {
       if (!cloned[category][stringFiedId]) cloned[category][stringFiedId] = 0;
 
       cloned[category][stringFiedId]++;
-
       setAmount(cloned);
     };
   };
@@ -49,6 +56,50 @@ function ProductFormDetails({ name, value, imgSrc, categories, description }) {
     return 0;
   };
 
+  let somatorio = 0; 
+  //Nao tava fazendo o somatorio para ingredientes,ai fiz algumas mudanças e agora está FUNCIONAL para os dois
+  //Tem modo melhor? acredito que sim
+  //Mais ainda vou descobri-lo
+  //Obs by:Devair
+
+  React.useEffect(() => {
+    if (!amount.Incrementos) {
+      return;
+    }
+
+    for (const key in amount.Incrementos) {
+      const increment = categories.Incrementos.find(
+        (increment) => key == increment.id
+      );
+      const incrementAmount = amount.Incrementos[key];
+      const parsedValue = parseFloat(increment.value);
+      const total = parsedValue * incrementAmount;
+      somatorio += total;
+    }
+
+    onChange(somatorio);
+    setTotal(somatorio);
+  }, [amount]);
+
+  React.useEffect(() => {
+    if (!amount.Ingredientes) {
+      return;
+    }
+
+    for (const key in amount.Ingredientes) {
+      const increment = categories.Ingredientes.find(
+        (increment) => key == increment.id
+      );
+      const incrementAmount = amount.Ingredientes[key];
+      const parsedValue = parseFloat(increment.value);
+      const total = parsedValue * incrementAmount;
+      somatorio += total;
+    }
+
+    onChange(somatorio);
+    setTotal(somatorio);
+  }, [amount]);
+
   return (
     <Grid
       container
@@ -67,7 +118,7 @@ function ProductFormDetails({ name, value, imgSrc, categories, description }) {
       </Grid>
 
       <Grid item xs={12} className={classes.infoContainer}>
-        <Grid container direction="column" >
+        <Grid container direction="column">
           <Typography className={classes.name}>{name}</Typography>
           <Typography className={classes.description}>{description}</Typography>
           <Typography className={classes.monetaryValue}>{value}</Typography>
@@ -85,16 +136,18 @@ function ProductFormDetails({ name, value, imgSrc, categories, description }) {
                 <ul className={classes.ul}>
                   <ListSubheader>
                     <div className={classes.listSubheader}>
-                      <Typography className={classes.ListHeader}>{categoryName}</Typography>
+                      <Typography className={classes.ListHeader}>
+                        {categoryName}
+                      </Typography>
                     </div>
                   </ListSubheader>
                   {categories[categoryName].map((item, index) => (
                     <IncremetsCard
                       key={`item-${categoryName}-${item.name}`}
                       value={item.value}
-                      onAdd={onAdd(categoryName, index)}
+                      onAdd={onAdd(categoryName, item.id)}
                       amount={getAmount(categoryName, index)}
-                      onRemove={onRemove(categoryName, index)}
+                      onRemove={onRemove(categoryName, item.id)}
                       productName={item.name}
                     />
                   ))}
@@ -104,7 +157,6 @@ function ProductFormDetails({ name, value, imgSrc, categories, description }) {
           </List>
         </Grid>
       </Grid>
-
     </Grid>
   );
 }

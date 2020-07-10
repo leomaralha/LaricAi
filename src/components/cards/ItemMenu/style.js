@@ -28,7 +28,6 @@ export default makeStyles((theme) => ({
     overflow: "hidden",
     maxHeight: "100%",
     borderRadius:"10px",
-    width: '100%'
   },
   
   image: {

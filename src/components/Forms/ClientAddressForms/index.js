@@ -147,7 +147,6 @@ delivery notice"
           <Button
             variant="contained"
             color="primary"
-            className={classes.button}
             startIcon={<CloudUploadIcon />}
             className={classes.buttonStyle}
             fullWidth

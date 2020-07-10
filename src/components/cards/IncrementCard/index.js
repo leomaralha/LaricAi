@@ -44,13 +44,15 @@ function IncrementsCard({
             color="secondary"
             aria-label="text secondary button group"
           >
-            <IconButton disabled={disableAddBtn} onClick={onAdd}>
-              <AddIcon />
-            </IconButton>
-            <Button>{amount}</Button>
-            <IconButton disabled={disableSubBtn} onClick={onRemove}>
-              <RemoveIcon />
-            </IconButton>
+            <div className={classes.addRemoveStyle}>
+              <IconButton disabled={disableAddBtn} onClick={onRemove}>
+                <RemoveIcon fontSize="small"/>
+              </IconButton>
+              <Button className={classes.icon}>{amount}</Button>
+              <IconButton disabled={disableSubBtn} onClick={onAdd}>
+                <AddIcon fontSize="small"/>
+              </IconButton>
+            </div>
           </ButtonGroup>
         </ListItemSecondaryAction>
       </ListItem>
