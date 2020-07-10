@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Menu from "./pages/Menu";
 import Register from "./pages/Register";
 import DeliveryProgress from "./pages/DeliveryProgress";
+import Test from './pages/Test'
 
 const history = createBrowserHistory();
 
@@ -16,6 +17,7 @@ function Routes() {
     <Router history={history}>
       <ScrollToTop/>
       <Switch>
+        <Route exact path="/" component={Test} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/landPage" component={LandPage} />
         <Route exact path="/login" component={Login} />
